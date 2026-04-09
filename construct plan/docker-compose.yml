@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    container_name: sourcebuild-web
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-replace-with-a-long-random-secret}
+      MONGO_URI: ${MONGO_URI:-mongodb://mongo:27017}
+      MONGO_DB_NAME: ${MONGO_DB_NAME:-sourcebuild_db}
+      MONGO_MOCK_FALLBACK: ${MONGO_MOCK_FALLBACK:-0}
+      FLASK_DEBUG: 0
+      FLASK_RUN_HOST: 0.0.0.0
+      PORT: 5000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    container_name: sourcebuild-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SourceBuild – Affordable Construction Planning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { 
+              sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+              display: ['Inter', 'ui-sans-serif', 'system-ui']
+            },
+            colors: {
+              primary: {
+                50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
+                400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1',
+                800: '#075985', 900: '#0c4a6e', 950: '#082f49'
+              },
+              secondary: {
+                50: '#fdf4ff', 100: '#fae8ff', 200: '#f5d0fe', 300: '#f0abfc',
+                400: '#e879f9', 500: '#d946ef', 600: '#c026d3', 700: '#a21caf',
+                800: '#86198f', 900: '#701a75', 950: '#4a044e'
+              },
+              success: {
+                50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+                400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
+                800: '#166534', 900: '#14532d', 950: '#052e16'
+              },
+              warning: {
+                50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+                400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+                800: '#92400e', 900: '#78350f', 950: '#451a03'
+              },
+              danger: {
+                50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5',
+                400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c',
+                800: '#991b1b', 900: '#7f1d1d', 950: '#450a0a'
+              }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-out',
+              'slide-up': 'slideUp 0.4s ease-out',
+              'slide-down': 'slideDown 0.4s ease-out',
+              'slide-left': 'slideLeft 0.4s ease-out',
+              'slide-right': 'slideRight 0.4s ease-out',
+              'bounce-gentle': 'bounceGentle 2s infinite',
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 3s ease-in-out infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'shimmer': 'shimmer 2s linear infinite',
+              'wiggle': 'wiggle 1s ease-in-out infinite',
+              'zoom-in': 'zoomIn 0.3s ease-out',
+              'zoom-out': 'zoomOut 0.3s ease-out'
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' }
+              },
+              slideDown: {
+                '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' }
+              },
+              slideLeft: {
+                '0%': { transform: 'translateX(20px)', opacity: '0' },
+                '100%': { transform: 'translateX(0)', opacity: '1' }
+              },
+              slideRight: {
+                '0%': { transform: 'translateX(-20px)', opacity: '0' },
+                '100%': { transform: 'translateX(0)', opacity: '1' }
+              },
+              bounceGentle: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-8px)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
+                '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8)' }
+              },
+              shimmer: {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(100%)' }
+              },
+              wiggle: {
+                '0%, 100%': { transform: 'rotate(-3deg)' },
+                '50%': { transform: 'rotate(3deg)' }
+              },
+              zoomIn: {
+                '0%': { transform: 'scale(0.9)', opacity: '0' },
+                '100%': { transform: 'scale(1)', opacity: '1' }
+              },
+              zoomOut: {
+                '0%': { transform: 'scale(1.1)', opacity: '0' },
+                '100%': { transform: 'scale(1)', opacity: '1' }
+              }
+            },
+            backdropBlur: {
+              xs: '2px',
+            },
+            boxShadow: {
+              'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+              'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+              'hard': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+              'glow': '0 0 20px rgba(59, 130, 246, 0.3)',
+              'glow-lg': '0 0 30px rgba(59, 130, 246, 0.4)',
+              'inner-soft': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 text-slate-900 font-sans antialiased">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f1f5f9" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+    
+    <!-- Construction Site Background Image -->
+    <div class="fixed inset-0 z-0">
+      <img src="https://buildern.com/resources/wp-content/uploads/2025/07/COVER_IMAGE_ConstructionPlanning-768x501.jpg" 
+           alt="Construction site with engineers and workers" 
+           class="w-full h-full object-cover opacity-10">
+      <div class="absolute inset-0 bg-gradient-to-br from-slate-50/90 via-blue-50/80 to-indigo-50/90"></div>
+    </div>
+    
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/60 shadow-soft">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <a href="/" class="flex items-center gap-3 group">
+            <div class="relative">
+              <img src="{{ url_for('static', filename='logo.svg') }}" alt="SourceBuild" class="w-8 h-8 group-hover:scale-110 transition-transform duration-300"/>
+              <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
+            </div>
+            <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-slate-900 via-primary-700 to-slate-900 bg-clip-text text-transparent group-hover:from-primary-600 group-hover:to-primary-800 transition-all duration-300">
+              SourceBuild
+            </span>
+          </a>
+          <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="/" class="relative px-4 py-2 rounded-xl hover:bg-primary-50/50 transition-all duration-300 group">
+              <span class="relative z-10">Home</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+            <a href="/about" class="relative px-4 py-2 rounded-xl hover:bg-primary-50/50 transition-all duration-300 group">
+              <span class="relative z-10">About</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+            <a href="/register_customer" class="relative px-4 py-2 rounded-xl hover:bg-primary-50/50 transition-all duration-300 group">
+              <span class="relative z-10">Register</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+            <a href="/login" class="relative inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all duration-300 shadow-medium hover:shadow-glow">
+              <span class="ph ph-user text-lg"></span>
+              Login
+              <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="relative z-10 animate-fade-in">
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="relative mt-20 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z"/%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid md:grid-cols-4 gap-8">
+          <!-- Brand Section -->
+          <div class="md:col-span-2">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="relative">
+                <img src="{{ url_for('static', filename='logo.svg') }}" alt="SourceBuild" class="w-10 h-10"/>
+                <div class="absolute inset-0 bg-primary-500/30 rounded-full blur-lg"></div>
+              </div>
+              <span class="text-3xl font-black tracking-tight bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">
+                SourceBuild
+              </span>
+            </div>
+            <p class="text-slate-300 text-lg leading-relaxed mb-6 max-w-md">
+              Making home construction planning affordable, transparent, and accessible for everyone. 
+              Connect with verified engineers and bring your dream home to life.
+            </p>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center shadow-glow">
+                <span class="ph ph-house text-white text-xl"></span>
+              </div>
+              <div>
+                <div class="text-sm text-slate-400">Trusted by</div>
+                <div class="text-lg font-bold text-white">1000+ Families</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg font-bold text-white mb-6">Quick Links</h3>
+            <ul class="space-y-3">
+              <li><a href="/" class="text-slate-300 hover:text-primary-300 transition-colors duration-300 flex items-center gap-2 group">
+                <span class="ph ph-house text-sm group-hover:scale-110 transition-transform"></span>
+                Home
+              </a></li>
+              <li><a href="/about" class="text-slate-300 hover:text-primary-300 transition-colors duration-300 flex items-center gap-2 group">
+                <span class="ph ph-info text-sm group-hover:scale-110 transition-transform"></span>
+                About
+              </a></li>
+              <li><a href="/register_customer" class="text-slate-300 hover:text-primary-300 transition-colors duration-300 flex items-center gap-2 group">
+                <span class="ph ph-user-plus text-sm group-hover:scale-110 transition-transform"></span>
+                Register
+              </a></li>
+              <li><a href="/login" class="text-slate-300 hover:text-primary-300 transition-colors duration-300 flex items-center gap-2 group">
+                <span class="ph ph-sign-in text-sm group-hover:scale-110 transition-transform"></span>
+                Login
+              </a></li>
+            </ul>
+          </div>
+          
+          <!-- Contact Info -->
+          <div>
+            <h3 class="text-lg font-bold text-white mb-6">Contact</h3>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center">
+                  <span class="ph ph-envelope text-primary-300 text-sm"></span>
+                </div>
+                <span class="text-slate-300">yashwanthpilli2005@gmail.com</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center">
+                  <span class="ph ph-phone text-primary-300 text-sm"></span>
+                </div>
+                <span class="text-slate-300">8790487399</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-primary-500/20 rounded-lg flex items-center justify-center">
+                  <span class="ph ph-map-pin text-primary-300 text-sm"></span>
+                </div>
+                <span class="text-slate-300">Mumbai, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="border-t border-slate-700/50 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between">
+          <p class="text-slate-400 text-sm">© {{ 2025 }} SourceBuild. All rights reserved.</p>
+          <div class="flex items-center gap-6 mt-4 sm:mt-0">
+            <a href="#" class="text-slate-400 hover:text-primary-300 transition-colors duration-300 text-sm">Privacy Policy</a>
+            <a href="#" class="text-slate-400 hover:text-primary-300 transition-colors duration-300 text-sm">Terms of Service</a>
+            <a href="#" class="text-slate-400 hover:text-primary-300 transition-colors duration-300 text-sm">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+  </html>
+
+

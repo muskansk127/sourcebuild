@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-10 bg-gradient-to-br from-slate-50 via-white to-primary-50/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-8 animate-slide-up">
+      <div>
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Welcome back, {{ session.full_name }}</h1>
+        <p class="text-slate-600 mt-1">Plan your dream home with confidence</p>
+      </div>
+      <a href="/logout" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 hover:border-red-300 hover:text-red-600 transition-colors">
+        <span class="ph ph-sign-out"></span>
+        Logout
+      </a>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="space-y-3 mb-6 animate-slide-up">
+          {% for category, message in messages %}
+            <div class="p-4 rounded-xl border-l-4 {{ 'border-l-red-500 bg-red-50 text-red-800' if category=='error' else 'border-l-success-500 bg-success-50 text-success-800' }} shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="ph {{ 'ph-warning-circle' if category=='error' else 'ph-check-circle' }} text-lg"></span>
+                {{ message }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-1 space-y-6">
+        <div class="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-primary-100 rounded-lg">
+              <span class="ph ph-calculator text-primary-600 text-xl"></span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Quick Cost Estimation</h2>
+          </div>
+          <form method="post" action="/estimate_cost" class="grid gap-4">
+            <div>
+              <label class="text-sm font-medium text-slate-700 mb-2 block">Area (sqft)</label>
+              <input name="area" type="number" min="0" step="1" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Enter area in square feet" required />
+            </div>
+            <div>
+              <label class="text-sm font-medium text-slate-700 mb-2 block">Material Type</label>
+              <select name="material" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors">
+                <option value="Basic">Basic (₹1,200/sqft)</option>
+                <option value="Standard">Standard (₹1,600/sqft)</option>
+                <option value="Premium">Premium (₹2,000/sqft)</option>
+              </select>
+            </div>
+            <button class="mt-4 inline-flex justify-center items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all shadow-lg">
+              <span class="ph ph-calculator"></span>
+              Get Estimate
+            </button>
+          </form>
+        </div>
+        
+        <div class="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-success-100 rounded-lg">
+              <span class="ph ph-image text-success-600 text-xl"></span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Upload Area Image</h2>
+          </div>
+          <form method="post" action="/upload_area_image" enctype="multipart/form-data" class="grid gap-4">
+            <div class="border-2 border-dashed border-slate-300 rounded-xl p-6 text-center hover:border-primary-400 transition-colors">
+              <input type="file" name="image" accept="image/png,image/jpeg,image/jpg,image/webp" class="w-full text-sm" required />
+              <p class="text-xs text-slate-500 mt-2">PNG, JPG, JPEG, WEBP up to 10MB</p>
+            </div>
+            <button class="inline-flex justify-center items-center gap-2 px-6 py-3 rounded-xl border-2 border-slate-300 hover:border-primary-400 hover:text-primary-600 transition-colors font-medium">
+              <span class="ph ph-upload"></span>
+              Upload Image
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="lg:col-span-2 space-y-8">
+        <div class="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl p-6 shadow-lg">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-warning-100 rounded-lg">
+              <span class="ph ph-users text-warning-600 text-xl"></span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Available Engineers</h2>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {% for e in engineers %}
+            <div class="border border-slate-200/60 rounded-xl p-5 hover:shadow-md transition-shadow bg-white/50">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                  <span class="ph ph-user text-primary-600"></span>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-slate-900">{{ e.full_name }}</div>
+                  <div class="text-sm text-slate-600 mt-1">{{ e.qualification }} • {{ e.experience }} years experience</div>
+                  {% if e.portfolio %}
+                    <a href="{{ e.portfolio }}" target="_blank" class="inline-flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700 mt-2">
+                      <span class="ph ph-link"></span>
+                      View Portfolio
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <div class="col-span-2 text-center py-8 text-slate-500">
+              <span class="ph ph-users text-4xl mb-2 block"></span>
+              No engineers registered yet
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <div class="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl p-6 shadow-lg">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2 bg-success-100 rounded-lg">
+              <span class="ph ph-images text-success-600 text-xl"></span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Your Project Gallery</h2>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for img in images %}
+            <div class="group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all bg-white/50">
+              <div class="relative">
+                <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}" alt="Area image" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"/>
+                <div class="absolute top-2 right-2">
+                  <form method="post" action="{{ url_for('delete_area_image', image_id=img._id) }}" class="inline">
+                    <button class="p-2 bg-red-500/90 text-white rounded-lg hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100">
+                      <span class="ph ph-trash text-sm"></span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="text-xs text-slate-500 mb-3">Uploaded {{ img.created_at.strftime('%b %d, %Y') if img.created_at else 'Recently' }}</div>
+                {% set imgKey = img._id|string %}
+                {% if plan_map and plan_map.get(imgKey) %}
+                  <div class="border-t border-slate-200 pt-3">
+                    <div class="text-xs font-medium text-slate-700 mb-2">Engineer Plans:</div>
+                    <div class="grid grid-cols-2 gap-2">
+                      {% for p in plan_map[imgKey] %}
+                      <a href="{{ url_for('static', filename='uploads/' ~ p.filename) }}" target="_blank" class="block group/plan">
+                        <img src="{{ url_for('static', filename='uploads/' ~ p.filename) }}" class="w-full h-16 object-cover rounded-lg group-hover/plan:scale-105 transition-transform"/>
+                        <div class="text-xs text-slate-500 mt-1">By {{ p.engineer_name }}</div>
+                      </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="text-xs text-slate-400 italic">No plans uploaded yet</div>
+                {% endif %}
+              </div>
+            </div>
+            {% else %}
+            <div class="col-span-full text-center py-12 text-slate-500">
+              <span class="ph ph-images text-6xl mb-4 block"></span>
+              <p class="text-lg font-medium">No images uploaded yet</p>
+              <p class="text-sm">Upload your first area image to get started</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

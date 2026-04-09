@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-10 bg-gradient-to-br from-slate-50 via-white to-primary-50/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-8 animate-slide-up">
+      <div>
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">Engineer Dashboard</h1>
+        <p class="text-slate-600 mt-1">Connect with customers and showcase your expertise</p>
+      </div>
+      <a href="/logout" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 hover:border-red-300 hover:text-red-600 transition-colors">
+        <span class="ph ph-sign-out"></span>
+        Logout
+      </a>
+    </div>
+    <div class="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl p-6 shadow-lg mb-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="p-2 bg-primary-100 rounded-lg">
+          <span class="ph ph-chart-line text-primary-600 text-xl"></span>
+        </div>
+        <h2 class="text-xl font-bold text-slate-900">Recent Cost Estimations</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full">
+          <thead>
+            <tr class="text-left text-slate-600 border-b border-slate-200">
+              <th class="pb-3 font-medium">Customer</th>
+              <th class="pb-3 font-medium">Area</th>
+              <th class="pb-3 font-medium">Material</th>
+              <th class="pb-3 font-medium">Rate</th>
+              <th class="pb-3 font-medium">Estimated Cost</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">
+            {% for est in estimates %}
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="py-4 font-medium text-slate-900">{{ est.customer_name }}</td>
+              <td class="py-4 text-slate-600">{{ est.area }} sqft</td>
+              <td class="py-4">
+                <span class="px-2 py-1 rounded-full text-xs font-medium {{ 'bg-blue-100 text-blue-800' if est.material == 'Basic' else 'bg-green-100 text-green-800' if est.material == 'Standard' else 'bg-purple-100 text-purple-800' }}">
+                  {{ est.material }}
+                </span>
+              </td>
+              <td class="py-4 text-slate-600">₹{{ est.rate }}</td>
+              <td class="py-4 font-bold text-slate-900">₹{{ est.estimated_cost }}</td>
+            </tr>
+            {% else %}
+            <tr>
+              <td class="py-12 text-center text-slate-500" colspan="5">
+                <span class="ph ph-chart-line text-4xl mb-2 block"></span>
+                No estimations yet
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl p-6 shadow-lg">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="p-2 bg-success-100 rounded-lg">
+          <span class="ph ph-images text-success-600 text-xl"></span>
+        </div>
+        <h2 class="text-xl font-bold text-slate-900">Customer Area Images</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for img in area_images %}
+        <div class="group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all bg-white/50">
+          <div class="relative">
+            <img src="{{ url_for('static', filename='uploads/' ~ img.filename) }}" alt="Area image" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"/>
+            <div class="absolute top-2 left-2">
+              <span class="px-2 py-1 bg-white/90 text-xs font-medium rounded-full text-slate-700">
+                {{ img.customer_name }}
+              </span>
+            </div>
+          </div>
+          <div class="p-4">
+            <div class="text-xs text-slate-500 mb-4">{{ img.created_at.strftime('%b %d, %Y') if img.created_at else 'Recently' }}</div>
+            
+            <form method="post" action="{{ url_for('upload_plan_image', area_image_id=img._id) }}" enctype="multipart/form-data" class="mb-4">
+              <div class="border-2 border-dashed border-slate-300 rounded-lg p-3 hover:border-primary-400 transition-colors">
+                <input type="file" name="image" accept="image/png,image/jpeg,image/jpg,image/webp" required class="w-full text-xs" />
+              </div>
+              <button class="mt-2 w-full inline-flex justify-center items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-medium hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all">
+                <span class="ph ph-upload"></span>
+                Upload Plan
+              </button>
+            </form>
+            
+            {% set key = img._id|string %}
+            {% if plan_map.get(key) %}
+              <div class="border-t border-slate-200 pt-4">
+                <div class="text-xs font-medium text-slate-700 mb-3">Your Plans:</div>
+                <div class="grid grid-cols-2 gap-2">
+                  {% for p in plan_map[key] %}
+                  <div class="group/plan relative">
+                    <a href="{{ url_for('static', filename='uploads/' ~ p.filename) }}" target="_blank" class="block">
+                      <img src="{{ url_for('static', filename='uploads/' ~ p.filename) }}" class="w-full h-20 object-cover rounded-lg group-hover/plan:scale-105 transition-transform"/>
+                      <div class="text-xs text-slate-500 mt-1">{{ p.created_at.strftime('%b %d') if p.created_at else 'Recent' }}</div>
+                    </a>
+                    <form method="post" action="{{ url_for('delete_plan_image', plan_id=p._id) }}" class="absolute top-1 right-1 opacity-0 group-hover/plan:opacity-100 transition-opacity">
+                      <button class="p-1.5 bg-red-500/90 text-white rounded-lg hover:bg-red-600 transition-colors" title="Delete Plan">
+                        <span class="ph ph-trash text-xs"></span>
+                      </button>
+                    </form>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              <div class="text-xs text-slate-400 italic text-center py-2">No plans uploaded yet</div>
+            {% endif %}
+          </div>
+        </div>
+        {% else %}
+        <div class="col-span-full text-center py-12 text-slate-500">
+          <span class="ph ph-images text-6xl mb-4 block"></span>
+          <p class="text-lg font-medium">No customer images yet</p>
+          <p class="text-sm">Customer area images will appear here for you to respond to</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

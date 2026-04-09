@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+{% block content %}
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden min-h-screen flex items-center">
+    <!-- Animated Background Elements -->
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-400/30 to-blue-500/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-secondary-400/20 to-purple-500/20 rounded-full blur-3xl animate-float" style="animation-delay: -1s;"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-success-400/10 to-primary-400/10 rounded-full blur-2xl animate-pulse-slow"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left Content -->
+        <div class="space-y-8 animate-slide-up">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/80 backdrop-blur-sm border border-primary-200/50 text-primary-700 text-sm font-medium">
+            <span class="ph ph-sparkle text-lg animate-wiggle"></span>
+            Trusted by 1000+ Families
+          </div>
+          
+          <!-- Main Heading -->
+          <div class="space-y-6">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
+              <span class="bg-gradient-to-r from-slate-900 via-primary-700 to-slate-900 bg-clip-text text-transparent">
+                Affordable Home
+              </span>
+              <br>
+              <span class="bg-gradient-to-r from-primary-600 via-blue-600 to-primary-600 bg-clip-text text-transparent">
+                Planning
+              </span>
+            </h1>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-lg">
+              Design, estimate, and plan your dream home with <span class="font-semibold text-primary-700">transparent pricing</span>. 
+              Connect with verified civil engineers and architects to bring your ideas to life.
+            </p>
+          </div>
+          
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/register_customer" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold text-lg hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all duration-300 shadow-hard hover:shadow-glow-lg">
+              <span class="ph ph-house-line text-2xl group-hover:scale-110 transition-transform"></span>
+              I'm a Customer
+              <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+            <a href="/register_engineer" class="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl border-2 border-slate-300 hover:border-primary-400 hover:text-primary-700 font-bold text-lg transition-all duration-300 hover:bg-primary-50/50 backdrop-blur-sm">
+              <span class="ph ph-briefcase text-2xl group-hover:scale-110 transition-transform"></span>
+              I'm an Engineer
+            </a>
+          </div>
+          
+          <!-- Stats Cards -->
+          <div class="grid grid-cols-3 gap-6 pt-8">
+            <div class="group p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/60 hover:bg-white/80 transition-all duration-300 hover:shadow-medium">
+              <div class="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                <span class="ph ph-currency-inr text-primary-600"></span>
+              </div>
+              <p class="text-sm font-semibold text-slate-700">Transparent Pricing</p>
+              <p class="text-xs text-slate-500 mt-1">No hidden costs</p>
+            </div>
+            <div class="group p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/60 hover:bg-white/80 transition-all duration-300 hover:shadow-medium">
+              <div class="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                <span class="ph ph-shield-check text-success-600"></span>
+              </div>
+              <p class="text-sm font-semibold text-slate-700">Verified Engineers</p>
+              <p class="text-xs text-slate-500 mt-1">Quality assured</p>
+            </div>
+            <div class="group p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/60 hover:bg-white/80 transition-all duration-300 hover:shadow-medium">
+              <div class="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                <span class="ph ph-sparkle text-warning-600"></span>
+              </div>
+              <p class="text-sm font-semibold text-slate-700">Modern Tools</p>
+              <p class="text-xs text-slate-500 mt-1">Latest technology</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Content - Hero Image/Preview -->
+        <div class="relative animate-slide-right">
+          <!-- Main Preview Card -->
+          <div class="relative group">
+            <div class="absolute -inset-4 bg-gradient-to-r from-primary-600/20 to-blue-600/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+            <div class="relative aspect-[4/3] rounded-3xl bg-gradient-to-br from-white via-slate-50 to-primary-50/30 border border-slate-200/60 shadow-hard p-8 backdrop-blur-sm">
+              <!-- Construction Site Preview -->
+              <div class="h-full w-full rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center relative overflow-hidden">
+                <!-- Construction Site Image -->
+                <div class="w-full h-full relative">
+                  <!-- Construction Site Background -->
+                  <img src="https://buildern.com/resources/wp-content/uploads/2025/07/COVER_IMAGE_ConstructionPlanning-768x501.jpg" 
+                       alt="Construction site with engineers and workers" 
+                       class="w-full h-full object-cover rounded-2xl">
+                  
+                  <!-- Overlay with Grid Pattern -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-slate-900/20 via-transparent to-slate-900/30 rounded-2xl">
+                    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+                  </div>
+                  
+                  <!-- Interactive Overlay Elements -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl"></div>
+                  
+                  <!-- Floating UI Elements -->
+                  <div class="absolute top-4 right-4 w-8 h-8 bg-success-500/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-medium animate-pulse">
+                    <span class="ph ph-check text-white text-sm"></span>
+                  </div>
+                  
+                  <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-700 shadow-medium">
+                    Live Site
+                  </div>
+                  
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <div class="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-medium">
+                      <div class="flex items-center gap-2 mb-2">
+                        <div class="w-2 h-2 bg-success-500 rounded-full animate-pulse"></div>
+                        <span class="text-xs font-medium text-slate-700">Active Construction</span>
+                      </div>
+                      <div class="text-xs text-slate-600">Engineers & Workers On-Site</div>
+                    </div>
+                  </div>
+                  
+                  <!-- Progress Indicator -->
+                  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div class="w-16 h-16 bg-primary-500/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-primary-500/30">
+                      <span class="ph ph-construction-cone text-primary-600 text-2xl animate-bounce-gentle"></span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Shimmer Effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Floating Elements -->
+          <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-success-400 to-success-600 rounded-2xl flex items-center justify-center shadow-medium animate-bounce-gentle">
+            <span class="ph ph-check text-white text-xl"></span>
+          </div>
+          <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-warning-400 to-warning-600 rounded-xl flex items-center justify-center shadow-medium animate-bounce-gentle" style="animation-delay: -0.5s;">
+            <span class="ph ph-star text-white text-lg"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- How It Works Section -->
+  <section class="relative py-24 bg-gradient-to-br from-slate-50 via-white to-primary-50/30 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f1f5f9" fill-opacity="0.3"%3E%3Ccircle cx="30" cy="30" r="1.5"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-20 animate-slide-up">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/80 backdrop-blur-sm border border-primary-200/50 text-primary-700 text-sm font-medium mb-6">
+          <span class="ph ph-gear text-lg"></span>
+          Simple Process
+        </div>
+        <h2 class="text-4xl sm:text-5xl font-black tracking-tight mb-6">
+          <span class="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+            How It Works
+          </span>
+        </h2>
+        <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+          Get started in minutes with our streamlined process designed for both customers and engineers
+        </p>
+      </div>
+      
+      <!-- Steps -->
+      <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+        <!-- Step 1 -->
+        <div class="group relative animate-slide-up">
+          <div class="relative">
+            <!-- Connection Line -->
+            <div class="hidden md:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-primary-300 to-transparent transform translate-x-4"></div>
+            
+            <!-- Step Card -->
+            <div class="relative p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-200/60 hover:bg-white/90 transition-all duration-500 hover:shadow-hard group-hover:scale-105">
+              <!-- Step Number -->
+              <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center shadow-medium text-white font-bold text-lg">
+                1
+              </div>
+              
+              <!-- Icon -->
+              <div class="w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="ph ph-user-plus text-primary-600 text-2xl"></span>
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">Create Your Account</h3>
+              <p class="text-slate-600 leading-relaxed mb-6">
+                Join as a customer to plan your dream home or as a civil engineer to showcase your expertise and connect with clients.
+              </p>
+              
+              <!-- Features -->
+              <ul class="space-y-2 text-sm text-slate-500">
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Quick registration process
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Secure account setup
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Profile customization
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="group relative animate-slide-up" style="animation-delay: 0.2s;">
+          <div class="relative">
+            <!-- Connection Line -->
+            <div class="hidden md:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-primary-300 to-transparent transform translate-x-4"></div>
+            
+            <!-- Step Card -->
+            <div class="relative p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-200/60 hover:bg-white/90 transition-all duration-500 hover:shadow-hard group-hover:scale-105">
+              <!-- Step Number -->
+              <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-success-500 to-success-600 rounded-2xl flex items-center justify-center shadow-medium text-white font-bold text-lg">
+                2
+              </div>
+              
+              <!-- Icon -->
+              <div class="w-16 h-16 bg-gradient-to-br from-success-100 to-success-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="ph ph-ruler text-success-600 text-2xl"></span>
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">Plan & Estimate</h3>
+              <p class="text-slate-600 leading-relaxed mb-6">
+                Upload your land details, get instant cost estimates, and connect with engineers who can help bring your vision to life.
+              </p>
+              
+              <!-- Features -->
+              <ul class="space-y-2 text-sm text-slate-500">
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Instant cost calculations
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Image upload support
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Material selection
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="group relative animate-slide-up" style="animation-delay: 0.4s;">
+          <div class="relative">
+            <!-- Step Card -->
+            <div class="relative p-8 rounded-3xl bg-white/80 backdrop-blur-sm border border-slate-200/60 hover:bg-white/90 transition-all duration-500 hover:shadow-hard group-hover:scale-105">
+              <!-- Step Number -->
+              <div class="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-warning-500 to-warning-600 rounded-2xl flex items-center justify-center shadow-medium text-white font-bold text-lg">
+                3
+              </div>
+              
+              <!-- Icon -->
+              <div class="w-16 h-16 bg-gradient-to-br from-warning-100 to-warning-200 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="ph ph-handshake text-warning-600 text-2xl"></span>
+              </div>
+              
+              <!-- Content -->
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">Connect & Build</h3>
+              <p class="text-slate-600 leading-relaxed mb-6">
+                Work directly with verified professionals, review plans, and execute your construction project with confidence.
+              </p>
+              
+              <!-- Features -->
+              <ul class="space-y-2 text-sm text-slate-500">
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Direct communication
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Plan collaboration
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="ph ph-check text-success-500 text-xs"></span>
+                  Progress tracking
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
